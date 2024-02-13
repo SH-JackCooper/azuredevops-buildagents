@@ -25,11 +25,17 @@ jobs:
   - ${{ if ne(parameters.repository_base_path, '.') }}:
     - checkout: ${{ parameters.repository_base_path }}
   - task: PowerShell@2
+    displayName: 'Backwards compatible variables'
+    inputs:
+      targetType: 'inline'
+      script: |
+        $CLIENTID = ![string]::IsNullOrWhiteSpace($CLIENTID) ? $CLIENTID : $CLIENT_ID
+  - task: PowerShell@2
     displayName: 'Cleanup orphaned Managed Images'
     inputs:
       targetType: filePath
       filePath: ${{ parameters.repository_base_path }}/scripts/cleanup-managedimages.ps1
-      arguments: -ClientId $(CLIENT_ID) `
+      arguments: -ClientId $(CLIENTID) `
                         -ClientSecret $(CLIENT_SECRET) `
                         -ResourceGroup $(AZURE_RESOURCE_GROUP) `
                         -SubscriptionId $(AZURE_SUBSCRIPTION) `
