@@ -27,21 +27,20 @@ jobs:
   - task: PowerShell@2
     displayName: 'Backwards compatible variables'
     inputs:
-      targetType: 'inline'
-      script: |
-        $CLIENTID = If (![string]::IsNullOrWhiteSpace($CLIENTID)) { $CLIENTID } Else { $CLIENT_ID }
+      targetType: filePath
+      filePath: ${{ parameters.repository_base_path }}/scripts/get-adovariables.ps1
   - task: PowerShell@2
     displayName: 'Cleanup orphaned Managed Images'
     inputs:
       targetType: filePath
       filePath: ${{ parameters.repository_base_path }}/scripts/cleanup-managedimages.ps1
-      arguments: -ClientId $(CLIENTID) `
-                        -ClientSecret $(CLIENT_SECRET) `
-                        -ResourceGroup $(AZURE_RESOURCE_GROUP) `
-                        -SubscriptionId $(AZURE_SUBSCRIPTION) `
-                        -AgentsResourceGroup $(AZURE_AGENTS_RESOURCE_GROUP) `
-                        -VmssNameWindows $(VMSS_Windows2019) `
-                        -VmssNameWindows2022 $(VMSS_Windows2022) `
-                        -VmssNameUbuntu $(VMSS_Ubuntu2004) `
-                        -VmssNameUbuntu2204 $(VMSS_Ubuntu2204) `
-                        -TenantId $(AZURE_TENANT)
+      arguments: -ClientId $(LCL_CLIENT_ID) `
+                        -ClientSecret $(LCL_CLIENT_SECRET) `
+                        -ResourceGroup $(LCL_AZURE_RESOURCE_GROUP) `
+                        -SubscriptionId $(LCL_AZURE_SUBSCRIPTION) `
+                        -AgentsResourceGroup $(LCL_AZURE_AGENTS_RESOURCE_GROUP) `
+                        -VmssNameWindows $(LCL_VMSS_Windows2019) `
+                        -VmssNameWindows2022 $(LCL_VMSS_Windows2022) `
+                        -VmssNameUbuntu $(LCL_VMSS_Ubuntu2004) `
+                        -VmssNameUbuntu2204 $(LCL_VMSS_Ubuntu2204) `
+                        -TenantId $(LCL_AZURE_TENANT)
