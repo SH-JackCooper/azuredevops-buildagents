@@ -36,7 +36,7 @@ jobs:
         $LCL_BUILD_AGENT_VNET_RESOURCE_GROUP = If (![string]::IsNullOrWhiteSpace($BUILDAGENTVNETRESOURCEGROUP)) { $BUILDAGENTVNETRESOURCEGROUP } ElseIf (![string]::IsNullOrWhiteSpace($BUILD_AGENT_VNET_RESOURCE_GROUP)) { $BUILD_AGENT_VNET_RESOURCE_GROUP } Else { $null }
         $LCL_BUILD_AGENT_SUBNET_NAME = If (![string]::IsNullOrWhiteSpace($BUILDAGENTSUBNETNAME)) { $BUILDAGENTSUBNETNAME } ElseIf (![string]::IsNullOrWhiteSpace($BUILD_AGENT_SUBNET_NAME)) { $BUILD_AGENT_SUBNET_NAME } Else { $null }
         $LCL_AZURE_TENANT = If (![string]::IsNullOrWhiteSpace($AZURETENANT)) { $AZURETENANT } ElseIf (![string]::IsNullOrWhiteSpace($AZURE_TENANT)) { $AZURE_TENANT } Else { $null }
-        $LCL_CLIENT_ID = If (![string]::IsNullOrWhiteSpace($CLIENTID)) { $CLIENTID } ElseIf (![string]::IsNullOrWhiteSpace($CLIENT_ID)) { $CLIENT_ID } Else { $null }
+        $LCL_CLIENT_ID = If (![string]::IsNullOrWhiteSpace($CLIENTID)) { Write-Host "CLIENTID";return $CLIENTID; } ElseIf (![string]::IsNullOrWhiteSpace($CLIENT_ID)) { Write-Host "CLIENT_ID";return $CLIENT_ID; } Else { Write-Host "null";return $null; }
         $LCL_CLIENT_SECRET = If (![string]::IsNullOrWhiteSpace($CLIENTSECRET)) { $CLIENTSECRET } ElseIf (![string]::IsNullOrWhiteSpace($CLIENT_SECRET)) { $CLIENT_SECRET } Else { $null }
         $LCL_RUN_VALIDATION_FLAG = If (![string]::IsNullOrWhiteSpace($RUNVALIDATIONFLAG)) { $RUN_VALIDATION_FLAG } ElseIf (![string]::IsNullOrWhiteSpace($RUN_VALIDATION_FLAG)) { $RUN_VALIDATION_FLAG } Else { $null }
         $LCL_GALLERY_NAME = If (![string]::IsNullOrWhiteSpace($GALLERYNAME)) { $GALLERYNAME } ElseIf (![string]::IsNullOrWhiteSpace($GALLERY_NAME)) { $GALLERY_NAME } Else { $null }
