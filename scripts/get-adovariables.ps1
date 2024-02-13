@@ -5,8 +5,13 @@ $LCL_BUILD_AGENT_VNET_NAME = If (![string]::IsNullOrWhiteSpace($BUILDAGENTVNETNA
 $LCL_BUILD_AGENT_VNET_RESOURCE_GROUP = If (![string]::IsNullOrWhiteSpace($BUILDAGENTVNETRESOURCEGROUP)) { $BUILDAGENTVNETRESOURCEGROUP } ElseIf (![string]::IsNullOrWhiteSpace($BUILD_AGENT_VNET_RESOURCE_GROUP)) { $BUILD_AGENT_VNET_RESOURCE_GROUP } Else { $null }
 $LCL_BUILD_AGENT_SUBNET_NAME = If (![string]::IsNullOrWhiteSpace($BUILDAGENTSUBNETNAME)) { $BUILDAGENTSUBNETNAME } ElseIf (![string]::IsNullOrWhiteSpace($BUILD_AGENT_SUBNET_NAME)) { $BUILD_AGENT_SUBNET_NAME } Else { $null }
 $LCL_AZURE_TENANT = If (![string]::IsNullOrWhiteSpace($AZURETENANT)) { $AZURETENANT } ElseIf (![string]::IsNullOrWhiteSpace($AZURE_TENANT)) { $AZURE_TENANT } Else { $null }
+
 $LCL_CLIENT_ID = If (![string]::IsNullOrWhiteSpace($CLIENTID)) { $CLIENTID } ElseIf (![string]::IsNullOrWhiteSpace($CLIENT_ID)) { $CLIENT_ID } Else { $null }
-$CLIENT_SECRET = If (![string]::IsNullOrWhiteSpace($CLIENTSECRET)) { $CLIENTSECRET } ElseIf (![string]::IsNullOrWhiteSpace($CLIENT_SECRET)) { $CLIENT_SECRET } Else { $null }
+Write-Host "*** Set Pipeline variable `LCL_CLIENT_ID = '$($LCL_CLIENT_ID)'"
+Write-Host "##vso[task.setvariable variable=LCL_CLIENT_ID]$($LCL_CLIENT_ID)"    
+[System.Environment]::SetEnvironmentVariable("LCL_CLIENT_ID",$($LCL_CLIENT_ID),[System.EnvironmentVariableTarget]::Process)
+
+$LCL_CLIENT_SECRET = If (![string]::IsNullOrWhiteSpace($CLIENTSECRET)) { $CLIENTSECRET } ElseIf (![string]::IsNullOrWhiteSpace($CLIENT_SECRET)) { $CLIENT_SECRET } Else { $null }
 $LCL_RUN_VALIDATION_FLAG = If (![string]::IsNullOrWhiteSpace($RUNVALIDATIONFLAG)) { $RUN_VALIDATION_FLAG } ElseIf (![string]::IsNullOrWhiteSpace($RUN_VALIDATION_FLAG)) { $RUN_VALIDATION_FLAG } Else { $null }
 $LCL_GALLERY_NAME = If (![string]::IsNullOrWhiteSpace($GALLERYNAME)) { $GALLERYNAME } ElseIf (![string]::IsNullOrWhiteSpace($GALLERY_NAME)) { $GALLERY_NAME } Else { $null }
 $LCL_GALLERY_RESOURCE_GROUP = If (![string]::IsNullOrWhiteSpace($GALLERYRESOURCEGROUP)) { $GALLERYRESOURCEGROUP } ElseIf (![string]::IsNullOrWhiteSpace($GALLERY_RESOURCE_GROUP)) { $GALLERY_RESOURCE_GROUP } Else { $null }
