@@ -29,7 +29,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        $CLIENTID = ![string]::IsNullOrWhiteSpace($CLIENTID) ? $CLIENTID : $CLIENT_ID
+        $CLIENTID = If (![string]::IsNullOrWhiteSpace($CLIENTID)) { $CLIENTID } Else { $CLIENT_ID }
   - task: PowerShell@2
     displayName: 'Cleanup orphaned Managed Images'
     inputs:
