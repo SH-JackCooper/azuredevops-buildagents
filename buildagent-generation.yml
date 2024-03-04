@@ -19,15 +19,15 @@ parameters:
 - name: variable_group_name
   displayName: Variable Group
   type: string
-  default: 'Image Generation Variables'
+  default: 'Self-hosted-agent-pipeline-variables'
 - name: agent_pool
   displayName: Agent Pool
   type: string
-  default: 'Host Pool - Image'
+  default: 'Self-hosted-agent-pool-linux'
 - name: update_type
   displayName: 'Update vmss (VM Scale Set) or galleryvm (Gallery VM Image) ?'
   type: string
-  default: galleryvm
+  default: vmss
   values:
   - galleryvm
   - vmss

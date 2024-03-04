@@ -2,11 +2,11 @@ parameters:
 - name: variable_group_name
   displayName: Variable Group
   type: string
-  default: 'Image Generation Variables'
+  default: 'Self-hosted-agent-pipeline-variables'
 - name: delete_type
   displayName: 'Delete vmss (VM Scale Set) or galleryvm (Gallery VM) image?'
   type: string
-  default: galleryvm
+  default: vmss
   values:
   - galleryvm
   - vmss
